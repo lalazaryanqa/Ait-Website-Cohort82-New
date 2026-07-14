@@ -6,8 +6,13 @@ public class RegistrationTests extends TestBase {
 
     @Test
     public void registrationPositiveTest() {
+
+        app.getHomePage()
+                .openHomePage()
+                .acceptCookies()
+                .clickLoginButton();
+
         app.getRegistrationPage()
-                .openRegistrationPage()
                 .clickSignUp()
                 .clickSignUpWithEmail()
                 .fillEmail("aitwebsitecohort82m@gmail.com")

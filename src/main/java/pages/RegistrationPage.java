@@ -10,11 +10,13 @@ public class RegistrationPage extends HelperBase {
         super(wd);
     }
 
-    public RegistrationPage openRegistrationPage() {
-        wd.get("https://my-ait.com/account/my-account");
-        pause(5000);
-        return this;
-    }
+
+
+//    public RegistrationPage openRegistrationPage() {
+//        wd.get("https://my-ait.com/account/my-account");
+//        pause(5000);
+//        return this;
+//    }
 
     public RegistrationPage clickSignUp() {
         click(By.xpath("//*[text()='Sign Up']"));
@@ -29,13 +31,19 @@ public class RegistrationPage extends HelperBase {
     }
 
     public RegistrationPage fillEmail(String email) {
-        type(By.xpath("//input[@type='email']"), email);
+        type(
+                By.cssSelector("input[type='email'][autocomplete='email']"),
+                email
+        );
         pause(5000);
         return this;
     }
 
     public RegistrationPage fillPassword(String password) {
-        type(By.xpath("//input[@type='password']"), password);
+        type(
+                By.cssSelector("input[type='password'][autocomplete='new-password']"),
+                password
+        );
         pause(5000);
         return this;
     }
