@@ -2,6 +2,7 @@ package manager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.AccountPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.RegistrationPage;
@@ -14,6 +15,7 @@ public class AppManager {
     RegistrationPage registrationPage;
     LoginPage loginPage;
     HomePage homePage;
+    AccountPage accountPage;
 
     public void init() {
         wd = new ChromeDriver();
@@ -23,6 +25,7 @@ public class AppManager {
         homePage = new HomePage(wd);
         registrationPage = new RegistrationPage(wd);
         loginPage = new LoginPage(wd);
+        accountPage = new AccountPage(wd);
     }
 
     public void stop() {
@@ -38,5 +41,8 @@ public class AppManager {
     }
     public LoginPage getLoginPage() {
         return loginPage;
+    }
+    public AccountPage getAccountPage() {
+        return accountPage;
     }
 }

@@ -35,7 +35,7 @@ public class RegistrationPage extends HelperBase {
                 By.cssSelector("input[type='email'][autocomplete='email']"),
                 email
         );
-        pause(5000);
+        pause(3000);
         return this;
     }
 
@@ -44,13 +44,13 @@ public class RegistrationPage extends HelperBase {
                 By.cssSelector("input[type='password'][autocomplete='new-password']"),
                 password
         );
-        pause(5000);
+        pause(3000);
         return this;
     }
 
     public RegistrationPage clickSignUpButton() {
         click(By.xpath("//span[contains(text(),'Sign Up')]"));
-        pause(5000);
+        pause(3000);
         return this;
     }
 }
