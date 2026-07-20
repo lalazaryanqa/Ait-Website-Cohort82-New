@@ -10,10 +10,16 @@ public class LoginTests extends TestBase {
                 .acceptCookies()
                 .clickLoginButton();
 
-       app.getLoginPage()
-               .clickLoginWithEmail()
-               .fillEmail("aitwebsitecohort82m@gmail.com")
-               .fillPassword("AitWebsiteCohort82!!")
-               .clickLoginButton();
+        app.getLoginPage()
+                .clickLoginWithEmail()
+                .fillEmail("aitwebsitecohort82m@gmail.com")
+                .fillPassword("AitWebsiteCohort82!!")
+                .clickLoginButton();
+
+
+        app.getHomePage()
+                .clickUserMenu()
+                .clickMyAccount();
+
     }
 }
