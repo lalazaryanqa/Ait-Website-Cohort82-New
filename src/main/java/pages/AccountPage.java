@@ -23,7 +23,8 @@ public class AccountPage extends HelperBase {
     public AccountPage fillAbout(String text) {
 
         WebElement visibleAboutBlock = wd.findElement(
-                By.xpath("//div[contains(@class,'sS2e7y_') and not(contains(@class,'oJGYZQN--hidden'))]")
+                By.xpath("//div[contains(@class,'sS2e7y_') " +
+                        "and not(contains(@class,'oJGYZQN--hidden'))]")
         );
 
         visibleAboutBlock.click();
@@ -76,11 +77,33 @@ public class AccountPage extends HelperBase {
     }
     public AccountPage scrollToVisibilityAndPrivacy() {
         Actions actions = new Actions(wd);
-        actions.scrollByAmount(0, 700).perform();
+        actions.scrollByAmount(0, 1100).perform();
         return this;
     }
     public AccountPage openProfileUrlSection() {
         click(By.cssSelector("[data-hook='accordion-item-header']"));
+        return this;
+    }
+
+    public AccountPage openProfilePrivacy() {
+        click(By.xpath("(//*[@data-hook='accordion-item-header'])[2]"));
+        return this;
+    }
+
+    public AccountPage openBlockedMembers() {
+        click(By.xpath("(//*[@data-hook='accordion-item-header'])[3]"));
+        return this;
+    }
+
+    public AccountPage scrollUp() {
+        new Actions(wd)
+                .scrollByAmount(0, -1500)
+                .perform();
+        return this;
+    }
+
+    public AccountPage clickMyGroups() {
+        click(By.linkText("My Groups"));
         return this;
     }
 

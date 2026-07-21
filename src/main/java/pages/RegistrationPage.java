@@ -11,7 +11,6 @@ public class RegistrationPage extends HelperBase {
     }
 
 
-
 //    public RegistrationPage openRegistrationPage() {
 //        wd.get("https://my-ait.com/account/my-account");
 //        pause(5000);
@@ -52,5 +51,13 @@ public class RegistrationPage extends HelperBase {
         click(By.xpath("//span[contains(text(),'Sign Up')]"));
         pause(3000);
         return this;
+    }
+
+    public String getCaptchaErrorMessage() {
+        return wd.findElement(
+                By.xpath(
+                        "//*[normalize-space(text())=\"Captcha is required to verify that you're a human.\"]"
+                )
+        ).getText();
     }
 }
