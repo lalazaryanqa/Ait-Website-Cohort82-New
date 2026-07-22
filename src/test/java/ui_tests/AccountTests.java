@@ -31,11 +31,15 @@ public class AccountTests extends TestBase {
                 .clickEditProfile()
                 .fillTitle("Automation QA Engineer")
                 .fillFirstName("Albert and Tatjana")
-                .fillLastName("Lalazaryan and Karotkina")
+                .fillLastName("Lalazaryan and Korotkina")
                 .fillPhone("+491701234567")
                 .uploadProfileImage(file.getAbsolutePath())
                 .scrollToVisibilityAndPrivacy()
-                .openProfileUrlSection();
+                .openProfileUrlSection()
+                .openProfilePrivacy()
+                .openBlockedMembers()
+                .scrollUp()
+                .clickMyGroups();
 
 
     }
