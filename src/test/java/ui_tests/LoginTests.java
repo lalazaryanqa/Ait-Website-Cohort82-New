@@ -1,5 +1,6 @@
 package ui_tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginTests extends TestBase {
@@ -16,10 +17,14 @@ public class LoginTests extends TestBase {
                 .fillPassword("AitWebsiteCohort82!!")
                 .clickLoginButton();
 
+        Assert.assertTrue(
+                app.getHomePage().isUserMenuDisplayed(),
+                "Expected authorized user menu to be displayed after login.");
+    }
 
-        app.getHomePage()
-                .clickUserMenu()
-                .clickMyAccount();
+
+//        app.getHomePage()
+//                .clickUserMenu()
+//                .clickMyAccount();
 
     }
-}
