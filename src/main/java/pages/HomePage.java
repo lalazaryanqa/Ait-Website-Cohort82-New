@@ -46,4 +46,12 @@ public class HomePage extends HelperBase {
         pause(3000);
         return new AccountPage(wd);
     }
+
+    public boolean isUserMenuDisplayed() {
+        return new WebDriverWait(wd, Duration.ofSeconds(5))
+                .until(ExpectedConditions.visibilityOfElementLocated(
+                        By.cssSelector("[data-testid='handle-button']")
+                ))
+                .isDisplayed();
+    }
 }
