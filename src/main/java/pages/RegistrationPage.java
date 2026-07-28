@@ -10,13 +10,6 @@ public class RegistrationPage extends HelperBase {
         super(wd);
     }
 
-
-//    public RegistrationPage openRegistrationPage() {
-//        wd.get("https://my-ait.com/account/my-account");
-//        pause(5000);
-//        return this;
-//    }
-
     public RegistrationPage clickSignUp() {
         click(By.xpath("//*[text()='Sign Up']"));
         pause(5000);
@@ -80,7 +73,7 @@ public class RegistrationPage extends HelperBase {
         ).getText();
     }
     // Этот тест считаем Негативным №4 для регистрации
-   // ожидаемый результат — поле password не может быть пустым и выводит сообщение об ошибке
+    // ожидаемый результат — поле password не может быть пустым и выводит сообщение об ошибке
     public String getEmptyPasswordMessage() {
         return wd.findElement(
                 By.xpath("//*[normalize-space(text())='Make sure you enter a password.']")
