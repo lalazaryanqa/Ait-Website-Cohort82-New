@@ -28,9 +28,11 @@ public class AppManager {
         accountPage = new AccountPage(wd);
     }
 
-    public void stop() {
-        wd.quit();
-    }
+    public void stop()
+        {
+            wd.quit();
+        }
+
 
     public RegistrationPage getRegistrationPage() {
         return registrationPage;
@@ -39,9 +41,11 @@ public class AppManager {
     public HomePage getHomePage() {
         return homePage;
     }
+
     public LoginPage getLoginPage() {
         return loginPage;
     }
+
     public AccountPage getAccountPage() {
         return accountPage;
     }

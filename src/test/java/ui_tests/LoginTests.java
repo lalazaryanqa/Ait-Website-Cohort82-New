@@ -21,7 +21,6 @@ public class LoginTests extends TestBase {
                 app.getHomePage().isUserMenuDisplayed(),
                 "Expected authorized user menu to be displayed after login.");
     }
-feature/tanja
 
     //Первый негативный тест
     @Test
@@ -116,20 +115,11 @@ feature/tanja
                 .fillPassword("")
                 .clickLoginButton();
 
-
-
-//        app.getHomePage()
-//                .clickUserMenu()
-//                .clickMyAccount();
-  dev
-
         Assert.assertEquals(
                 app.getLoginPage().getPasswordValidationMessage(),
                 "Make sure you enter a password."
         );
     }
-feature/tanja
 
 
 }
-dev
