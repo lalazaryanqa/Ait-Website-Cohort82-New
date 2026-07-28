@@ -1,0 +1,150 @@
+package ui_tests;
+
+import manager.PropertiesReader;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+
+public class RegistrationTests extends TestBase {
+
+    private String generateUniqueEmail() {
+        return "aitstudent" + System.currentTimeMillis() + "@gmail.com";
+    }
+
+    @Test(priority = 1)
+    public void registrationWithoutCaptchaNegativeTest() {
+        String uniqueEmail = generateUniqueEmail();
+
+        app.getHomePage()
+                .openHomePage()
+                .acceptCookies()
+                .clickLoginButton();
+
+        app.getRegistrationPage()
+                .clickSignUp()
+                .clickSignUpWithEmail()
+                .fillEmail(uniqueEmail)
+                .fillPassword(PropertiesReader.getProperty("base.properties", "password"))
+                .clickSignUpButton();
+
+        String actualMessage = app.getRegistrationPage()
+                .getCaptchaErrorMessage();
+
+        Assert.assertEquals(
+                actualMessage,
+                "Captcha is required to verify that you're a human."
+        );
+    }
+
+    @Test(priority = 2)
+    public void registrationWithInvalidEmailNegativeTest() {
+
+        app.getHomePage()
+                .openHomePage()
+                .acceptCookies()
+                .clickLoginButton();
+
+        app.getRegistrationPage()
+                .clickSignUp()
+                .clickSignUpWithEmail()
+                .fillEmail("usergmail.com")
+                .fillPassword(PropertiesReader.getProperty("base.properties", "password"))
+                .clickSignUpButton();
+
+        String actualMessage = app.getRegistrationPage()
+                .getInvalidEmailMessage();
+
+        Assert.assertEquals(actualMessage,"Double check your email and try again.");
+    }
+
+    @Test(priority = 3)
+    public void registrationWithEmptyEmailNegativeTest() {
+
+        app.getHomePage()
+                .openHomePage()
+                .acceptCookies()
+                .clickLoginButton();
+
+        app.getRegistrationPage()
+                .clickSignUp()
+                .clickSignUpWithEmail()
+                .fillPassword(PropertiesReader.getProperty("base.properties", "password"))
+                .clickSignUpButton();
+
+        String actualMessage = app.getRegistrationPage()
+                .getEmptyEmailMessage();
+
+        Assert.assertEquals(actualMessage, "Email cannot be blank");
+    }
+
+    @Test(priority = 4)
+    public void registrationWithEmptyPasswordNegativeTest() {
+        String uniqueEmail = generateUniqueEmail();
+
+        app.getHomePage()
+                .openHomePage()
+                .acceptCookies()
+                .clickLoginButton();
+
+        app.getRegistrationPage()
+                .clickSignUp()
+                .clickSignUpWithEmail()
+                .fillEmail(uniqueEmail)
+                .fillPassword("")
+                .clickSignUpButton();
+
+        String actualMessage = app.getRegistrationPage()
+                .getEmptyPasswordMessage();
+
+        Assert.assertEquals(actualMessage, "Make sure you enter a password.");
+    }
+
+    @Test(priority = 5)
+    public void registrationPageElementsAreDisplayedPositiveTest() {
+
+        app.getHomePage()
+                .openHomePage()
+                .acceptCookies()
+                .clickLoginButton();
+
+        app.getRegistrationPage()
+                .clickSignUp()
+                .clickSignUpWithEmail();
+
+        Assert.assertTrue(app.getRegistrationPage().isEmailFieldDisplayed());
+
+        Assert.assertTrue(app.getRegistrationPage().isPasswordFieldDisplayed());
+
+        Assert.assertTrue(app.getRegistrationPage().isSignUpButtonDisplayed());
+
+        Assert.assertTrue(app.getRegistrationPage().isLogInLinkDisplayed());
+    }
+
+
+    @Test(priority = 6)
+    public void registrationWithGeneratedEmailPositiveTest() {
+        String uniqueEmail = generateUniqueEmail();
+
+        app.getHomePage()
+                .openHomePage()
+                .acceptCookies()
+                .clickLoginButton();
+
+        app.getRegistrationPage()
+                .clickSignUp()
+                .clickSignUpWithEmail()
+                .fillEmail(uniqueEmail)
+                .fillPassword(PropertiesReader.getProperty("base.properties", "password"));
+
+
+        Assert.assertEquals(app.getRegistrationPage().getEmailValue(),
+                uniqueEmail);
+
+        Assert.assertTrue(app.getRegistrationPage().isPasswordFilled());
+
+        Assert.assertTrue(app.getRegistrationPage().isSignUpButtonEnabled());
+    }
+
+
+
+}
