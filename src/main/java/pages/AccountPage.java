@@ -24,6 +24,7 @@ public class AccountPage extends HelperBase {
                         "//div[contains(@class,'sS2e7y_') " +
                                 "and not(contains(@class,'oJGYZQN--hidden'))]"
                 )
+                By.xpath("//div[contains(@class,'sS2e7y_') and not(contains(@class,'oJGYZQN--hidden'))]")
         );
 
         visibleAboutBlock.click();
@@ -87,6 +88,8 @@ public class AccountPage extends HelperBase {
         new Actions(wd)
                 .scrollByAmount(0, 1100)
                 .perform();
+        Actions actions = new Actions(wd);
+        actions.scrollByAmount(0, 1100).perform();
         pause(3000);
         return this;
     }
@@ -95,6 +98,7 @@ public class AccountPage extends HelperBase {
         click(By.cssSelector(
                 "[data-hook='accordion-item-header']"
         ));
+        click(By.cssSelector("[data-hook='accordion-item-header']"));
         pause(3000);
         return this;
     }
@@ -102,6 +106,7 @@ public class AccountPage extends HelperBase {
     public AccountPage openProfilePrivacy() {
         click(By.xpath(
                 "(//*[@data-hook='accordion-item-header'])[2]"));
+        click(By.xpath("(//*[@data-hook='accordion-item-header'])[2]"));
         pause(3000);
         return this;
     }
@@ -109,6 +114,7 @@ public class AccountPage extends HelperBase {
     public AccountPage openBlockedMembers() {
         click(By.xpath(
                 "(//*[@data-hook='accordion-item-header'])[3]"));
+        click(By.xpath("(//*[@data-hook='accordion-item-header'])[3]"));
         pause(3000);
         return this;
     }
@@ -139,6 +145,50 @@ public class AccountPage extends HelperBase {
         clickMenuItemAndReturn("My Wallet", myGroupsUrl);
         clickMenuItemAndReturn("My Subscriptions", myGroupsUrl);
         pause(3000);
+        return this;
+    }
+
+    private void clickMenuItemAndReturn(
+            String linkText,
+            String myGroupsUrl
+    ) {
+        click(By.linkText(linkText));
+        pause(3000);
+
+        wd.get(myGroupsUrl);
+        pause(3000);
+    }
+
+    public AccountPage clickUserMenu() {
+        click(By.cssSelector("[data-testid='handle-button']"));
+        pause(3000);
+        return this;
+    }
+
+    public AccountPage clickLogout() {
+
+        List<WebElement> logoutButtons = wd.findElements(
+                By.xpath("//div[@role='menuitem' and @data-testid='link']" +
+                        "[.//span[normalize-space()='Log Out']]")
+        );
+
+        for (WebElement logoutButton : logoutButtons) {
+            if (logoutButton.isDisplayed()) {
+                ((JavascriptExecutor) wd)
+                        .executeScript("arguments[0].click();", logoutButton);
+                pause(3000);
+                return this;
+            }
+        }
+
+        throw new RuntimeException("");
+    }
+
+    public AccountPage logout() {
+        pause(1000);
+        clickUserMenu();
+        pause(1000);
+        clickLogout();
         return this;
     }
 

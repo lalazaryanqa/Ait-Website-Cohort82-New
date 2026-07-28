@@ -42,6 +42,10 @@ public class LoginPage extends HelperBase {
     public String getPasswordValidationMessage() {
         return wd.findElement(
                 By.xpath("//*[text()='Make sure you enter a password.']")).getText();
+    public String getPasswordValidationMessage() {
+        return wd.findElement(
+                By.xpath("//*[text()='Make sure you enter a password.']")
+        ).getText();
     }
 
     // №2 негативный тест
@@ -49,6 +53,7 @@ public class LoginPage extends HelperBase {
         return wd.findElement(
                 By.xpath("//*[text()='Wrong email or password']")).getText();
     }
+
     // №3 негативный тест
     public String getNonExistingEmailMessage() {
         return wd.findElement(

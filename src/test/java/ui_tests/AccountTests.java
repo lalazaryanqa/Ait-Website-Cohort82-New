@@ -32,7 +32,7 @@ public class AccountTests extends TestBase {
                 .clickEditProfile()
                 .fillTitle("Automation QA Engineer")
                 .fillFirstName("Albert and Tatjana")
-                .fillLastName("Lalazaryan and Korotkina")
+                .fillLastName("Lalazaryan and Karotkina")
                 .fillPhone("+491701234567")
                 .uploadProfileImage(file.getAbsolutePath())
                 .scrollToVisibilityAndPrivacy()

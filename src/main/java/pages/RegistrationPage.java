@@ -74,7 +74,7 @@ public class RegistrationPage extends HelperBase {
         ).getText();
     }
     // Этот тест считаем Негативным №4 для регистрации
-   // ожидаемый результат — поле password не может быть пустым и выводит сообщение об ошибке
+    // ожидаемый результат — поле password не может быть пустым и выводит сообщение об ошибке
     public String getEmptyPasswordMessage() {
         return wd.findElement(
                 By.xpath("//*[normalize-space(text())='Make sure you enter a password.']")

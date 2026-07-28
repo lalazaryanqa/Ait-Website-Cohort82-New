@@ -12,6 +12,7 @@ public class PropertiesReader {
                 + "/src/test/properties/"
                 + fileName;
 
+        String filePath = System.getProperty("user.dir") + "/src/test/properties/" + fileName;
         try (FileInputStream fileInputStream = new FileInputStream(filePath)) {
             properties.load(fileInputStream);
 
@@ -31,4 +32,5 @@ public class PropertiesReader {
             );
         }
     }
+}
 }

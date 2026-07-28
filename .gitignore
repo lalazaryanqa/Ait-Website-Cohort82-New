@@ -42,4 +42,5 @@ bin/
 ### Mac OS ###
 .DS_Store
 
+# Local test configuration with credentials
 src/test/properties/base.properties
