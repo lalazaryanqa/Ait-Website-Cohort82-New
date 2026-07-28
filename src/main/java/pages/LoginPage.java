@@ -38,6 +38,10 @@ public class LoginPage extends HelperBase {
         return wd.findElement(By.xpath("//*[text()='Email cannot be blank']"))
                 .getText();
     }
+
+    public String getPasswordValidationMessage() {
+        return wd.findElement(
+                By.xpath("//*[text()='Make sure you enter a password.']")).getText();
     public String getPasswordValidationMessage() {
         return wd.findElement(
                 By.xpath("//*[text()='Make sure you enter a password.']")

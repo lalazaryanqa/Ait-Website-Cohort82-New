@@ -53,7 +53,6 @@ public class HomePage extends HelperBase {
         return new WebDriverWait(wd, Duration.ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(
                         By.cssSelector("[data-testid='handle-button']")
-                ))
-                .isDisplayed();
+                )).isDisplayed();
     }
 }

@@ -28,6 +28,10 @@ public class AppManager {
         accountPage = new AccountPage(wd);
     }
 
+    public void stop() {
+            wd.quit();
+
+    }
     public void stop()
         {
             wd.quit();

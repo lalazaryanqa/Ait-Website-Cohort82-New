@@ -1,6 +1,9 @@
 package ui_tests;
 
+import manager.PropertiesReader;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
 
 public class RegistrationTests extends TestBase {
 
@@ -133,18 +136,13 @@ public class RegistrationTests extends TestBase {
                 .fillEmail(uniqueEmail)
                 .fillPassword(PropertiesReader.getProperty("base.properties", "password"));
 
-        Assert.assertEquals(
-                app.getRegistrationPage().getEmailValue(),
-                uniqueEmail
-        );
 
-        Assert.assertTrue(
-                app.getRegistrationPage().isPasswordFilled()
-        );
+        Assert.assertEquals(app.getRegistrationPage().getEmailValue(),
+                uniqueEmail);
 
-        Assert.assertTrue(
-                app.getRegistrationPage().isSignUpButtonEnabled()
-        );
+        Assert.assertTrue(app.getRegistrationPage().isPasswordFilled());
+
+        Assert.assertTrue(app.getRegistrationPage().isSignUpButtonEnabled());
     }
 
 

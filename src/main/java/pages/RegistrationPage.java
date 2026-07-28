@@ -10,15 +10,16 @@ public class RegistrationPage extends HelperBase {
         super(wd);
     }
 
+
     public RegistrationPage clickSignUp() {
         click(By.xpath("//*[text()='Sign Up']"));
-        pause(5000);
+        pause(3000);
         return this;
     }
 
     public RegistrationPage clickSignUpWithEmail() {
         click(By.xpath("//span[contains(text(),'Sign up with email')]"));
-        pause(5000);
+        pause(3000);
         return this;
     }
 
