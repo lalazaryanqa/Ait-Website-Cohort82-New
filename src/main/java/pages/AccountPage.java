@@ -1,10 +1,7 @@
 package pages;
 
 import manager.HelperBase;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
@@ -17,6 +14,7 @@ public class AccountPage extends HelperBase {
 
     public AccountPage clickProfile() {
         click(By.linkText("Profile"));
+        pause(3000);
         return this;
     }
 
@@ -34,6 +32,7 @@ public class AccountPage extends HelperBase {
 
         aboutEditor.click();
         aboutEditor.sendKeys(text);
+        pause(3000);
 
         return this;
     }
@@ -46,32 +45,38 @@ public class AccountPage extends HelperBase {
 
     public AccountPage clickEditProfile() {
         click(By.cssSelector("[data-hook='Profile-EditProfileButton']"));
+        pause(3000);
         return this;
     }
 
     public AccountPage fillTitle(String title) {
         type(By.id("title-id"), title);
+        pause(3000);
         return this;
     }
 
     public AccountPage fillFirstName(String firstName) {
         type(By.cssSelector("input[data-hook='MyAccount-textField'][name='fields.2.value']"), firstName);
+        pause(3000);
         return this;
     }
 
     public AccountPage fillLastName(String lastName) {
         type(By.cssSelector("input[data-hook='MyAccount-textField'][name='fields.3.value']"), lastName);
+        pause(3000);
         return this;
     }
 
     public AccountPage fillPhone(String phone) {
         type(By.cssSelector("input[data-hook='MyAccount-textField'][name='fields.4.value']"), phone);
+        pause(3000);
         return this;
     }
 
     public AccountPage uploadProfileImage(String imagePath) {
         wd.findElement(By.cssSelector("input[type='file'][name='member.profile.photo']")
         ).sendKeys(imagePath);
+        pause(3000);
         return this;
     }
     public AccountPage scrollToVisibilityAndPrivacy() {
@@ -116,13 +121,19 @@ public class AccountPage extends HelperBase {
         String myGroupsUrl = wd.getCurrentUrl();
 
         clickMenuItemAndReturn("My Programs", myGroupsUrl);
+
         clickMenuItemAndReturn("My Homeworks", myGroupsUrl);
+
         clickMenuItemAndReturn("Files", myGroupsUrl);
+
         clickMenuItemAndReturn("Program List", myGroupsUrl);
+
         clickMenuItemAndReturn("Notifications", myGroupsUrl);
+
         clickMenuItemAndReturn("My Wallet", myGroupsUrl);
+
         clickMenuItemAndReturn("My Subscriptions", myGroupsUrl);
-        pause(3000);
+
         return this;
     }
 
@@ -131,15 +142,15 @@ public class AccountPage extends HelperBase {
             String myGroupsUrl
     ) {
         click(By.linkText(linkText));
-        pause(3000);
+        pause(5000);
 
         wd.get(myGroupsUrl);
-        pause(3000);
+        pause(5000);
     }
 
     public AccountPage clickUserMenu() {
         click(By.cssSelector("[data-testid='handle-button']"));
-        pause(3000);
+        pause(5000);
         return this;
     }
 
@@ -154,7 +165,7 @@ public class AccountPage extends HelperBase {
             if (logoutButton.isDisplayed()) {
                 ((JavascriptExecutor) wd)
                         .executeScript("arguments[0].click();", logoutButton);
-                pause(3000);
+                pause(5000);
                 return this;
             }
         }

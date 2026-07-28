@@ -1,5 +1,7 @@
 package ui_tests;
 
+import manager.PropertiesReader;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class RegistrationTests extends TestBase {

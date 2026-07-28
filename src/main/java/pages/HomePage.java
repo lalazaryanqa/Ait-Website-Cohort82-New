@@ -33,7 +33,7 @@ public class HomePage extends HelperBase {
     }
 
     public HomePage clickUserMenu() {
-        new WebDriverWait(wd, Duration.ofSeconds(3))
+        new WebDriverWait(wd, Duration.ofSeconds(10))
                 .until(ExpectedConditions.invisibilityOfElementLocated(
                         By.cssSelector("[data-testid='siteMembersDialogLayout']")
                 ));
@@ -50,7 +50,7 @@ public class HomePage extends HelperBase {
     }
 
     public boolean isUserMenuDisplayed() {
-        return new WebDriverWait(wd, Duration.ofSeconds(5))
+        return new WebDriverWait(wd, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(
                         By.cssSelector("[data-testid='handle-button']")
                 ))

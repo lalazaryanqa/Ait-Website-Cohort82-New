@@ -1,10 +1,11 @@
 package ui_tests;
 
+import manager.PropertiesReader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginTests extends TestBase {
-    @Test
+    @Test(priority = 1)
     public void loginPositiveTest() {
         app.getHomePage()
                 .openHomePage()
@@ -13,8 +14,8 @@ public class LoginTests extends TestBase {
 
         app.getLoginPage()
                 .clickLoginWithEmail()
-                .fillEmail("aitwebsitecohort82m@gmail.com")
-                .fillPassword("AitWebsiteCohort82!!")
+                .fillEmail(PropertiesReader.getProperty("base.properties", "email"))
+                .fillPassword(PropertiesReader.getProperty("base.properties", "password"))
                 .clickLoginButton();
 
         Assert.assertTrue(
@@ -23,7 +24,7 @@ public class LoginTests extends TestBase {
     }
 
     //Первый негативный тест
-    @Test
+    @Test(priority = 2)
     public void loginWithEmptyEmailAndPasswordNegativeTest() {
         app.getHomePage()
                 .openHomePage()
@@ -45,7 +46,7 @@ public class LoginTests extends TestBase {
         );
     }
 
-    @Test
+    @Test(priority = 3)
     public void loginWithInvalidPasswordNegativeTest() {
         app.getHomePage()
                 .openHomePage()
@@ -54,7 +55,7 @@ public class LoginTests extends TestBase {
 
         app.getLoginPage()
                 .clickLoginWithEmail()
-                .fillEmail("aitwebsitecohort82m@gmail.com")
+                .fillEmail(PropertiesReader.getProperty("base.properties", "email"))
                 .fillPassword("WrongPassword123!")
                 .clickLoginButton();
 
@@ -64,7 +65,7 @@ public class LoginTests extends TestBase {
                 "Incorrect error message for wrong email or password.");
     }
 
-    @Test
+    @Test(priority = 4)
     public void loginWithNonExistingEmailNegativeTest() {
         app.getHomePage()
                 .openHomePage()
@@ -74,7 +75,7 @@ public class LoginTests extends TestBase {
         app.getLoginPage()
                 .clickLoginWithEmail()
                 .fillEmail("notregistered" + System.currentTimeMillis() + "@gmail.com")
-                .fillPassword("AitWebsiteCohort82!!")
+                .fillPassword(PropertiesReader.getProperty("base.properties", "password"))
                 .clickLoginButton();
 
         Assert.assertEquals(
@@ -83,7 +84,7 @@ public class LoginTests extends TestBase {
                 "Incorrect error message for a non-existing email.");
     }
 
-    @Test
+    @Test(priority = 5)
     public void loginWithEmptyEmailNegativeTest() {
         app.getHomePage()
                 .openHomePage()
@@ -93,7 +94,7 @@ public class LoginTests extends TestBase {
         app.getLoginPage()
                 .clickLoginWithEmail()
                 .fillEmail("")
-                .fillPassword("AitWebsiteCohort82!!")
+                .fillPassword(PropertiesReader.getProperty("base.properties", "password"))
                 .clickLoginButton();
 
         Assert.assertEquals(
@@ -102,7 +103,7 @@ public class LoginTests extends TestBase {
         );
     }
 
-    @Test
+    @Test(priority = 6)
     public void loginWithEmptyPasswordNegativeTest() {
         app.getHomePage()
                 .openHomePage()
@@ -111,7 +112,7 @@ public class LoginTests extends TestBase {
 
         app.getLoginPage()
                 .clickLoginWithEmail()
-                .fillEmail("aitwebsitecohort82m@gmail.com")
+                .fillEmail(PropertiesReader.getProperty("base.properties", "email"))
                 .fillPassword("")
                 .clickLoginButton();
 

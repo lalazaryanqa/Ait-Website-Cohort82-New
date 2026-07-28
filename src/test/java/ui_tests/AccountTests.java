@@ -1,5 +1,6 @@
 package ui_tests;
 
+import manager.PropertiesReader;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -19,8 +20,8 @@ public class AccountTests extends TestBase {
 
         app.getLoginPage()
                 .clickLoginWithEmail()
-                .fillEmail("aitwebsitecohort82m@gmail.com")
-                .fillPassword("AitWebsiteCohort82!!")
+                .fillEmail(PropertiesReader.getProperty("base.properties", "email"))
+                .fillPassword(PropertiesReader.getProperty("base.properties", "password"))
                 .clickLoginButton();
 
         app.getHomePage()
