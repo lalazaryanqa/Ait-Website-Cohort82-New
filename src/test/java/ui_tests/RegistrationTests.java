@@ -1,7 +1,9 @@
 package ui_tests;
 
+import manager.PropertiesReader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
 
 public class RegistrationTests extends TestBase {
 
@@ -9,7 +11,7 @@ public class RegistrationTests extends TestBase {
         return "aitstudent" + System.currentTimeMillis() + "@gmail.com";
     }
 
-    @Test
+    @Test(priority = 1)
     public void registrationWithoutCaptchaNegativeTest() {
         String uniqueEmail = generateUniqueEmail();
 
@@ -22,7 +24,7 @@ public class RegistrationTests extends TestBase {
                 .clickSignUp()
                 .clickSignUpWithEmail()
                 .fillEmail(uniqueEmail)
-                .fillPassword("AitWebsiteCohort82!!")
+                .fillPassword(PropertiesReader.getProperty("base.properties", "password"))
                 .clickSignUpButton();
 
         String actualMessage = app.getRegistrationPage()
@@ -34,7 +36,7 @@ public class RegistrationTests extends TestBase {
         );
     }
 
-    @Test
+    @Test(priority = 2)
     public void registrationWithInvalidEmailNegativeTest() {
 
         app.getHomePage()
@@ -46,7 +48,7 @@ public class RegistrationTests extends TestBase {
                 .clickSignUp()
                 .clickSignUpWithEmail()
                 .fillEmail("usergmail.com")
-                .fillPassword("AitWebsiteCohort82!!")
+                .fillPassword(PropertiesReader.getProperty("base.properties", "password"))
                 .clickSignUpButton();
 
         String actualMessage = app.getRegistrationPage()
@@ -55,7 +57,7 @@ public class RegistrationTests extends TestBase {
         Assert.assertEquals(actualMessage,"Double check your email and try again.");
     }
 
-    @Test
+    @Test(priority = 3)
     public void registrationWithEmptyEmailNegativeTest() {
 
         app.getHomePage()
@@ -66,7 +68,7 @@ public class RegistrationTests extends TestBase {
         app.getRegistrationPage()
                 .clickSignUp()
                 .clickSignUpWithEmail()
-                .fillPassword("AitWebsiteCohort82!!")
+                .fillPassword(PropertiesReader.getProperty("base.properties", "password"))
                 .clickSignUpButton();
 
         String actualMessage = app.getRegistrationPage()
@@ -75,7 +77,7 @@ public class RegistrationTests extends TestBase {
         Assert.assertEquals(actualMessage, "Email cannot be blank");
     }
 
-    @Test
+    @Test(priority = 4)
     public void registrationWithEmptyPasswordNegativeTest() {
         String uniqueEmail = generateUniqueEmail();
 
@@ -97,7 +99,7 @@ public class RegistrationTests extends TestBase {
         Assert.assertEquals(actualMessage, "Make sure you enter a password.");
     }
 
-    @Test
+    @Test(priority = 5)
     public void registrationPageElementsAreDisplayedPositiveTest() {
 
         app.getHomePage()
@@ -119,7 +121,7 @@ public class RegistrationTests extends TestBase {
     }
 
 
-    @Test
+    @Test(priority = 6)
     public void registrationWithGeneratedEmailPositiveTest() {
         String uniqueEmail = generateUniqueEmail();
 
@@ -132,20 +134,15 @@ public class RegistrationTests extends TestBase {
                 .clickSignUp()
                 .clickSignUpWithEmail()
                 .fillEmail(uniqueEmail)
-                .fillPassword("AitWebsiteCohort82!!");
+                .fillPassword(PropertiesReader.getProperty("base.properties", "password"));
 
-        Assert.assertEquals(
-                app.getRegistrationPage().getEmailValue(),
-                uniqueEmail
-        );
 
-        Assert.assertTrue(
-                app.getRegistrationPage().isPasswordFilled()
-        );
+        Assert.assertEquals(app.getRegistrationPage().getEmailValue(),
+                uniqueEmail);
 
-        Assert.assertTrue(
-                app.getRegistrationPage().isSignUpButtonEnabled()
-        );
+        Assert.assertTrue(app.getRegistrationPage().isPasswordFilled());
+
+        Assert.assertTrue(app.getRegistrationPage().isSignUpButtonEnabled());
     }
 
 

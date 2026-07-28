@@ -22,11 +22,13 @@ public class HomePage extends HelperBase {
 
     public HomePage acceptCookies() {
         click(By.cssSelector("#cst-cookies-submit"));
+        pause(5000);
         return this;
     }
 
     public HomePage clickLoginButton() {
         click(By.xpath("//*[contains(text(),'Log In')]"));
+        pause(3000);
         return this;
     }
 
@@ -51,7 +53,6 @@ public class HomePage extends HelperBase {
         return new WebDriverWait(wd, Duration.ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(
                         By.cssSelector("[data-testid='handle-button']")
-                ))
-                .isDisplayed();
+                )).isDisplayed();
     }
 }

@@ -29,7 +29,8 @@ public class AppManager {
     }
 
     public void stop() {
-        wd.quit();
+            wd.quit();
+
     }
 
     public RegistrationPage getRegistrationPage() {

@@ -11,21 +11,15 @@ public class RegistrationPage extends HelperBase {
     }
 
 
-//    public RegistrationPage openRegistrationPage() {
-//        wd.get("https://my-ait.com/account/my-account");
-//        pause(5000);
-//        return this;
-//    }
-
     public RegistrationPage clickSignUp() {
         click(By.xpath("//*[text()='Sign Up']"));
-        pause(5000);
+        pause(3000);
         return this;
     }
 
     public RegistrationPage clickSignUpWithEmail() {
         click(By.xpath("//span[contains(text(),'Sign up with email')]"));
-        pause(5000);
+        pause(3000);
         return this;
     }
 
